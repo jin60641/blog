@@ -11,5 +11,10 @@
   },
   "rules": {
     "no-use-before-define": 0,
+
+    "import/no-unresolved": [
+      0,
+      { "ignore": ["^components"] }
+    ],
   }
 }
