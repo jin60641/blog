@@ -10,11 +10,14 @@
     "node": true
   },
   "rules": {
+    "jsx-quotes": [2, "prefer-single"],
     "no-use-before-define": 0,
 
     "import/no-unresolved": [
       0,
       { "ignore": ["^components"] }
     ],
+
+    "react/jsx-filename-extension": [2, { "extensions": [".test.js", ".jsx"] }]
   }
 }
