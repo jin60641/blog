@@ -3,6 +3,11 @@ module.exports = {
     title: "Jinsang's Blog",
     description: 'first blog',
     author: '@jin60641',
+    siteUrl: 'jin60641.surge.sh',
+    owner: {
+      name: '진상현',
+      email: 'jin60641@gmail.com',
+    },
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -25,5 +30,6 @@ module.exports = {
         display: 'minimal-ui',
       },
     },
+    'gatsby-transformer-remark',
   ],
 };

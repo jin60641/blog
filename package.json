@@ -13,6 +13,7 @@
     "gatsby-plugin-resolve-src": "^2.0.0-beta.1",
     "gatsby-plugin-sharp": "^2.0.14",
     "gatsby-source-filesystem": "^2.0.12",
+    "gatsby-transformer-remark": "^2.1.19",
     "gatsby-transformer-sharp": "^2.1.8",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
@@ -29,7 +30,8 @@
     "start": "npm run develop",
     "test": "jest --no-cache",
     "test:watch": "npm run test -- --watch",
-    "lint": "eslint -c .eslintrc 'src/**/*.js*'"
+    "lint": "eslint -c .eslintrc 'src/**/*.js*'",
+    "lint:diff": "git diff-index --name-only --diff-filter=dbx HEAD | grep -E \"(.*)\\.(jsx|js)$\" | xargs eslint"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -58,8 +60,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "git diff-index --name-only --diff-filter=dbx HEAD | grep -E \"(.*)\\.(jsx|js)$\" | xargs eslint",
-      "pre-push": "npm run test"
+      "pre-push": "npm run test",
+      "pre-commit": "npm run lint:diff"
     }
   }
 }

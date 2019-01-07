@@ -1,100 +1,61 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { StaticQuery, graphql } from 'gatsby';
 
 const SEO = ({
-  description,
-  lang,
-  meta,
-  keywords,
+  url,
   title,
+  description,
+  author,
+  keywords,
+  locale,
+  image,
 }) => (
-  <StaticQuery
-    query={detailsQuery}
-    render={(data) => {
-      const metaDescription = description || data.site.siteMetadata.description;
-      return (
-        <Helmet
-          htmlAttributes={{
-            lang,
-          }}
-          title={title}
-          titleTemplate={`%s | ${data.site.siteMetadata.title}`}
-          meta={[
-            {
-              name: 'description',
-              content: metaDescription,
-            },
-            {
-              property: 'og:title',
-              content: title,
-            },
-            {
-              property: 'og:description',
-              content: metaDescription,
-            },
-            {
-              property: 'og:type',
-              content: 'website',
-            },
-            {
-              name: 'twitter:card',
-              content: 'summary',
-            },
-            {
-              name: 'twitter:creator',
-              content: data.site.siteMetadata.author,
-            },
-            {
-              name: 'twitter:title',
-              content: title,
-            },
-            {
-              name: 'twitter:description',
-              content: metaDescription,
-            },
-          ]
-            .concat(
-              keywords.length > 0
-                ? {
-                  name: 'keywords',
-                  content: keywords.join(', '),
-                }
-                : [],
-            )
-            .concat(meta)}
-        />
-      );
-    }}
-  />
+  <Helmet
+    htmlAttributes={{ lang: locale.slice(0, 2) }}
+  >
+    <title>{title}</title>
+    <meta name='description' content={description} />
+    <meta name='author' content={`${author.name} <${author.email}>`} />
+    <meta name='keywords' content={keywords.join(', ')} />
+
+    {/* OpenGraph Tags */}
+    <meta property='og:locale' content={locale} />
+    <meta property='og:url' content={url} />
+    <meta property='og:title' content={title} />
+    <meta property='og:type' content='website' />
+    <meta property='og:description' content={description} />
+    {image && <meta property='og:image' content={image} />}
+
+    {/* Twitter Card Tags */}
+    <meta name='twitter:card' content='summary' />
+    <meta name='twitter:url' content={url} />
+    <meta name='twitter:title' content={title} />
+    <meta name='twitter:description' content={description} />
+    <meta name='twitter:creator' content={`${author.name} <${author.email}>`} />
+    {image && <meta property='twitter:image' content={image} />}
+  </Helmet>
 );
 
 SEO.defaultProps = {
   description: '',
-  lang: 'en',
-  meta: [],
   keywords: [],
+  image: '',
+  locale: 'ko_KR',
 };
 
 SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.shape({})),
-  keywords: PropTypes.arrayOf(PropTypes.string),
+  url: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  author: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+  }).isRequired,
+
+  description: PropTypes.string,
+  image: PropTypes.string,
+  locale: PropTypes.string,
+  keywords: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default SEO;
-
-const detailsQuery = graphql`
-  query DefaultSEOQuery {
-    site {
-      siteMetadata {
-        title
-        description
-        author
-      }
-    }
-  }
-`;
