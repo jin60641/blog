@@ -28,6 +28,7 @@ const Detail = ({
       description={excerpt}
       author={owner}
       keywords={['gatsby', 'application', 'react']}
+      image={frontmatter.image}
     />
     <section>
       <h1>{frontmatter.title}</h1>
@@ -59,6 +60,7 @@ export const pageQuery = graphql`
       excerpt
       frontmatter {
         title
+        image
         date(formatString: "YYYY년 M월 D일")
       }
     }
