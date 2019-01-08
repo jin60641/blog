@@ -27,7 +27,8 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "deploy": "npm run build && gh-pages -d public -b gh-pages",
+    "posts": "git submodule update --init --recursive --remote",
+    "deploy": "npm run posts && npm run build && gh-pages -d public -b gh-pages",
     "start": "npm run develop",
     "test": "jest --no-cache",
     "test:watch": "npm run test -- --watch",
