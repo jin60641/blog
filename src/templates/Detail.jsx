@@ -39,8 +39,29 @@ const Detail = ({
 );
 
 Detail.propTypes = {
-  data: PropTypes.shape({}).isRequired,
+  data: PropTypes.shape({
+    site: PropTypes.shape({
+      siteMetadata: PropTypes.shape({
+        siteUrl: PropTypes.string.isRequired,
+        title: PropTypes.string,
+        owner: PropTypes.shape({
+          name: PropTypes.string,
+          email: PropTypes.string,
+        }).isRequired,
+      }).isRequired,
+    }).isRequired,
+    markdownRemark: PropTypes.shape({
+      frontmatter: PropTypes.shape({
+        title: PropTypes.string,
+        image: PropTypes.string,
+        date: PropTypes.string,
+      }).isRequired,
+      excerpt: PropTypes.string.isRequired,
+      html: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
+
 
 export const pageQuery = graphql`
   query BlogPostByPath($path: String!) {
