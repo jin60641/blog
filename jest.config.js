@@ -7,20 +7,21 @@ module.exports = {
 
   coverageThreshold: {
     './src': {
-      'branches': 100,
-      'functions': 100,
-      'lines': 100,
-      'statements': 100,
+      branches: 100,
+      functions: 100,
+      lines: 100,
+      statements: 100,
     },
   },
 
   moduleNameMapper: {
-   '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|css|scss)$': 'identity-obj-proxy',
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|css|scss)$': 'identity-obj-proxy',
   },
 
   testPathIgnorePatterns: ['node_modules', '.cache'],
   transformIgnorePatterns: ['node_modules/(?!(gatsby)/)'],
 
+  setupFiles: ['<rootDir>/test/loadershim.js'],
   setupTestFrameworkScriptFile: '<rootDir>/test/config.js',
 
   testEnvironment: 'jsdom',
@@ -30,7 +31,7 @@ module.exports = {
   ],
 
   transform: {
-    '^.+\\.jsx?$': '<rootDir>/jest-preprocess.js',
+    '^.+\\.jsx?$': '<rootDir>/test/jest-preprocess.js',
   },
 
   globals: {
@@ -40,6 +41,4 @@ module.exports = {
   testURL: 'http://localhost',
 
   watchman: true,
-
-  setupFiles: ['<rootDir>/loadershim.js'],
 };
