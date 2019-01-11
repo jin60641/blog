@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 
 import Layout from 'components/Layout';
 import SEO from 'components/SEO';
@@ -36,7 +36,10 @@ const List = ({
       },
     }) => (
       <>
-        <div key={slug}>
+        <Link
+          key={slug}
+          to={`/post${slug}`}
+        >
           <h2>
             {title || slug}
           </h2>
@@ -45,7 +48,7 @@ const List = ({
             {excerpt}
             {' '}
           </p>
-        </div>
+        </Link>
         <hr />
       </>
     ))}
