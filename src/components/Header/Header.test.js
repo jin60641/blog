@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link } from 'gatsby';
 import Header from './Header';
 
 describe('<Header />', () => {
-  it('should render Link', () => {
+  it('should render header', () => {
     const wrapper = shallow(<Header />);
-    expect(wrapper.find(Link)).toHaveLength(1);
+    expect(wrapper.find('header')).toHaveLength(1);
   });
 });
