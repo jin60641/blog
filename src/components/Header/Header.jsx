@@ -3,13 +3,19 @@ import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 
 const Header = ({ siteTitle }) => (
-  <div>
-    <h1>
-      <Link to='/'>
-        {siteTitle}
-      </Link>
-    </h1>
-  </div>
+  <header>
+    <nav>
+      <h1>
+        <Link to='/'>
+          {siteTitle}
+        </Link>
+      </h1>
+      <div>
+        <Link to='/page/1'> blog </Link>
+        <Link to='/resume'> resume </Link>
+      </div>
+    </nav>
+  </header>
 );
 
 Header.propTypes = {

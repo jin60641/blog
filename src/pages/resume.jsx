@@ -4,10 +4,10 @@ import { StaticQuery, graphql } from 'gatsby';
 import Layout from 'components/Layout';
 import SEO from 'components/SEO';
 
-const Index = () => (
+const Resume = () => (
   <StaticQuery
     query={graphql`
-      query IndexQuery {
+      query ResumeQuery {
         site {
           siteMetadata {
             siteUrl
@@ -29,16 +29,14 @@ const Index = () => (
     }) => (
       <Layout>
         <SEO
-          title='Home'
+          title='Resume'
           url={siteUrl}
           author={owner}
         />
-        <h1>Hi people</h1>
-        <p>Welcome to your new Gatsby site.</p>
-        <p>Now go build something great.</p>
+        <h1>Resume</h1>
       </Layout>
     )}
   />
 );
 
-export default Index;
+export default Resume;
