@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: "Jinsang's Blog",
-    description: 'first blog',
+    title: 'jinsang.me',
+    description: "Jinsang's page",
     author: '@jin60641',
-    siteUrl: 'jin60641.surge.sh',
+    siteUrl: 'jinsang.me',
     owner: {
       name: '진상현',
       email: 'jin60641@gmail.com',
@@ -24,7 +24,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: "jinsang's blog",
+        name: 'jinsang.me',
         short_name: 'blog',
         start_url: '/',
         display: 'minimal-ui',
