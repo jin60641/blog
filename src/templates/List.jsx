@@ -24,10 +24,30 @@ const List = ({
       url={siteUrl}
       author={owner}
     />
-    {posts.map(({ node }) => (
-      <div key={node.fields.slug}>
-        {node.frontmatter.title || node.fields.slug}
-      </div>
+    {posts.map(({
+      node: {
+        fields: {
+          slug,
+        },
+        frontmatter: {
+          title,
+        },
+        excerpt,
+      },
+    }) => (
+      <>
+        <div key={slug}>
+          <h2>
+            {title || slug}
+          </h2>
+          <p>
+            {' '}
+            {excerpt}
+            {' '}
+          </p>
+        </div>
+        <hr />
+      </>
     ))}
   </Layout>
 );
@@ -46,6 +66,7 @@ List.propTypes = {
     }).isRequired,
     allMarkdownRemark: PropTypes.shape({
       edges: PropTypes.arrayOf(PropTypes.shape({
+        excerpt: PropTypes.string.isRequired,
         frontmatter: PropTypes.shape({
           title: PropTypes.string,
         }).isRequired,
@@ -77,11 +98,14 @@ export const blogListQuery = graphql`
     ) {
       edges {
         node {
+          excerpt
           fields {
             slug
           }
           frontmatter {
             title
+            image
+            date(formatString: "YYYY년 M월 D일")
           }
         }
       }
